@@ -23,6 +23,10 @@ body {
   flex-direction: column;
   border-radius: 6px;
 }
+.top-buttons {
+  display: flex;
+  align-items: center;
+}
 #operations {
   text-align: right;
 }
