@@ -12,6 +12,11 @@ body {
   justify-content: center;
   background: #bebebe;
   padding: 3em;
+  transition: 0.8s all;
+}
+#top-buttons {
+  display: flex;
+  align-items: center;
 }
 #calc {
   width: 400px;
@@ -21,10 +26,6 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 6px;
-}
-.top-buttons {
-  display: flex;
-  align-items: center;
 }
 #operations {
   text-align: right;
