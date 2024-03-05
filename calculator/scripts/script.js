@@ -6,6 +6,9 @@ const themeIcon = document.getElementById("theme-icon")
 const githublightIcon = "assets/githlight.svg"
 const githubdarkIcon = "assets/githubdark.svg"
 const githubICon = document.getElementById("github-icon")
+const previusOperation = document.querySelector("#previous")
+const currentOperation = document.querySelector("current")
+const buttons = document.querySelectorAll("#buttons-container button")
 
 function changeTheme() {
     const theme = document.getElementById("theme");
@@ -20,6 +23,8 @@ function changeTheme() {
         githubICon.setAttribute("src", githubdarkIcon);
     }
 }
+
+
 
 
 
