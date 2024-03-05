@@ -4,32 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>calculator</title>
-  <link rel="stylesheet" href="../calculator/styles/style-dark.css">
+  <link rel="stylesheet" href="../calculator/styles/style-dark.css" id="theme">
 </head>
 <body>
+
 <div id="calc">
+  <div id="top-buttons">  
+    <a href="https://github.com/Dinihz/calculator">
+      <img src="/calculator/assets/githlight.svg" alt="SuIcon" id="github-icon">
+    </a>
+    <button type="button" onclick="changeTheme()" class="theme-button">
+      <img src="/calculator/assets/sun.svg" alt="Theme Icon" id="theme-icon">
+    </button>
+  </div>
   <div id="operations">
     <div id="previous"></div>
     <div id="current"></div>
   </div>
   <div id="buttons-container">
-    <button>CE</button>
-    <button>C</button>
-    <button>DEL</button>
-    <button>/</button>
+    <button id="operators-bars">CE</button>
+    <button id="operators-bars">C</button>
+    <button id="operators-bars">DEL</button>
+    <button id="operators-bars">/</button>
     <button id="number">7</button>
     <button id="number">8</button>
     <button id="number">9</button>
-    <button>x</button>
+    <button id="operators-bars">x</button>
     <button id="number">4</button>
     <button id="number">5</button>
     <button id="number">6</button>
-    <button>-</button>
+    <button id="operators-bars">-</button>
     <button id="number">1</button>
     <button id="number">2</button>
     <button id="number">3</button>
-    <button>+</button>
-    <button>%</button>
+    <button id="operators-bars">+</button>
+    <button id="operators-bars">%</button>
     <button id="number">0</button>
     <button id="number">.</button>
     <button id="equal">=</button>
