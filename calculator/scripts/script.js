@@ -1,28 +1,30 @@
-const display = document.querySelector(".display");
-const buttons = document.querySelectorAll("button");
-const OPERATORS = ["%", "*", "/", "-", "+", "="];
-let currentInput = "";
+const lightTheme = "styles/style-light.css"
+const darkTheme = "styles/style-dark.css"
+const sunICon = "assets/sun.svg"
+const moonICon = "assets/moon.svg"
+const themeIcon = document.getElementById("theme-icon")
+const githublightIcon = "assets/githlight.svg"
+const githubdarkIcon = "assets/githubdark.svg"
+const githubICon = document.getElementById("github-icon")
+const previusOperation = document.querySelector("#previous")
+const currentOperation = document.querySelector("current")
+const buttons = document.querySelectorAll("#buttons-container button")
 
-const calculate = (buttonValue) => {
-  if (buttonValue === "=" && currentInput !== "") {
-    // Calcula o resultado da expressão - Calculates the result of the expression
-    currentInput = eval(currentInput.replace("%", "/100"));
-  } else if (buttonValue === "AC") {
-    // Limpa a entrada atual
-    currentInput = "";
-  } else if (buttonValue === "DEL") {
-    // Remove o último caractere da entrada atual - Removes the last character from the current entry
-    currentInput = currentInput.toString().slice(0, -1);
-  } else {
-    // Adiciona o valor do botão à entrada atual - Adds the value of the button to the current entry
-    if (currentInput === "" && OPERATORS.includes(buttonValue)) return;
-    currentInput += buttonValue;
-  }
+function changeTheme() {
+    const theme = document.getElementById("theme");
+    if (theme.getAttribute("href") === lightTheme) {
+        theme.setAttribute("href", darkTheme);
+        themeIcon.setAttribute("src", sunICon);
+        githubICon.setAttribute("src", githublightIcon);
 
-  // Atualiza o valor exibido no display - Updates the value shown on the display
-  display.value = currentInput;
-};
+    } else {
+        theme.setAttribute("href", lightTheme);
+        themeIcon.setAttribute("src", moonICon);
+        githubICon.setAttribute("src", githubdarkIcon);
+    }
+}
 
-buttons.forEach((button) => {
-  button.addEventListener("click", (e) => calculate(e.target.dataset.value));
-});
+
+
+
+
