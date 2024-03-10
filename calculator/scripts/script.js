@@ -4,10 +4,10 @@ const sunICon = "assets/sun.svg"
 const moonICon = "assets/moon.svg"
 const themeIcon = document.getElementById("theme-icon")
 const githublightIcon = "assets/githlight.svg"
-const githubdarkIcon = "assets/githubdark.svg"
+const githubDarkIcon = "assets/githubdark.svg"
 const githubICon = document.getElementById("github-icon")
-const previusoperationText = document.querySelector("#previous")
-const currentoperationText = document.querySelector("#current")
+const previusOperationText = document.querySelector("#previous")
+const currentOperationText = document.querySelector("#current")
 const buttons = document.querySelectorAll("#buttons-container button")
 
 function changeTheme() {
@@ -16,24 +16,24 @@ function changeTheme() {
         theme.setAttribute("href", darkTheme);
         themeIcon.setAttribute("src", sunICon);
         githubICon.setAttribute("src", githublightIcon);
-
+        return;
     } else {
         theme.setAttribute("href", lightTheme);
         themeIcon.setAttribute("src", moonICon);
-        githubICon.setAttribute("src", githubdarkIcon);
+        githubICon.setAttribute("src", githubDarkIcon);
     }
 }
 
 class Calculator {
-    constructor(previusoperationText, currentoperationText) {
-        this.previusoperationText = previusoperationText
-        this.currentoperationText = currentoperationText
+    constructor(previusOperationText, currentOperationText) {
+        this.previusOperationText = previusOperationText
+        this.currentOperationText = currentOperationText
         this.currentOperation = ""
     }
     //add digit Oo screen
     addDigit(digit) {
         //check if current operation alredy has a dot
-        if(digit === "." && this.currentoperationText.innerText.includes(".")) {
+        if(digit === "." && this.currentOperationText.innerText.includes(".")) {
             return;
         }
 
@@ -45,9 +45,9 @@ class Calculator {
     //Process all calculator operations
     processOperation(operation) {
         //check if current is empty
-        if(this.currentoperationText.innerText === "" && operation !== "C") {
+        if(this.currentOperationText.innerText === "" && operation !== "C") {
             //Change operation
-            if(this.previusoperationText.innerText !== "") {
+            if(this.previusOperationText.innerText !== "") {
                 this.changeOperation(operation);
             }
             return;
@@ -57,8 +57,8 @@ class Calculator {
 
         //get current and previous value
         let operationValue
-        const previous = +this.previusoperationText.innerText.split(" ")[0];
-        const current = +this.currentoperationText.innerText;
+        const previous = +this.previusOperationText.innerText.split(" ")[0];
+        const current = +this.currentOperationText.innerText;
 
         switch(operation) {
         case "+":
@@ -82,16 +82,16 @@ class Calculator {
             this.updateScreen(operationValue, operation, current, previous);
             break;
         case "DEL":
-            this.processdelOperator();
+            this.processDelOperator();
             break;
         case "CE":
-            this.processclearcurrentOperaion();
+            this.processClearCurrentOperaion();
             break;
         case "C":
-            this.processclearOperation();
+            this.processClearOperation();
             break;
         case "=":
-            this.processequalOperator();
+            this.processEqualOperator();
             break;
         default:
             return;
@@ -109,7 +109,7 @@ class Calculator {
             console.log(operationValue, operation, current, previous)
         
             if(operationValue === null) {
-                this.currentoperationText.innerText += this.currentOperation;
+                this.currentOperationText.innerText += this.currentOperation;
             } else {
                 //check if value is zero, if it is just add currrent value
                 if(previous === 0) {
@@ -117,8 +117,8 @@ class Calculator {
                 }
                 
                 //add current value to previus
-                this.previusoperationText.innerText = `${operationValue} ${operation}`
-                this.currentoperationText.innerText = "";
+                this.previusOperationText.innerText = `${operationValue} ${operation}`
+                this.currentOperationText.innerText = "";
 
             }
         }
@@ -132,35 +132,35 @@ class Calculator {
             return;
         }
 
-        this.previusoperationText.innerText = this.previusoperationText.innerText.slice(0, -1) + operation;
+        this.previusOperationText.innerText = this.previusOperationText.innerText.slice(0, -1) + operation;
 
     }
 
     ///delete the last digit
-    processdelOperator() {
-        this.currentoperationText.innerText = this.currentoperationText.innerText.slice(0, -1)
+    processDelOperator() {
+        this.currentOperationText.innerText = this.currentOperationText.innerText.slice(0, -1)
     }
 
     //clar current operation
-    processclearcurrentOperaion() {
-        this.currentoperationText.innerText = "";
+    processClearCurrentOperaion() {
+        this.currentOperationText.innerText = "";
     }
 
     //clear all operations
-    processclearOperation() {
-        this.currentoperationText.innerText = "";
-        this.previusoperationText.innerText = "";
+    processClearOperation() {
+        this.currentOperationText.innerText = "";
+        this.previusOperationText.innerText = "";
     }
 
     //process an operation
-    processequalOperator() {
-        const operation = previusoperationText.innerHTML.split(" ")[1];
+    processEqualOperator() {
+        const operation = previusOperationText.innerHTML.split(" ")[1];
         this.processOperation(operation);
     }
 
 }
 
-const calc = new Calculator(previusoperationText, currentoperationText)
+const calc = new Calculator(previusOperationText, currentOperationText)
 
 buttons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
