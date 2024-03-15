@@ -8,9 +8,9 @@ class Calculator {
         this.currentOperationText = currentOperationText
         this.currentOperation = ""
     }
-    //add digit Oo screen
+    // Add digit Oo screen
     addDigit(digit) {
-        //check if current operation alredy has a dot
+        // check if current operation alredy has a dot
         if(digit === "." && this.currentOperationText.innerText.includes(".")) {
             return;
         }
@@ -20,9 +20,9 @@ class Calculator {
         this.updateScreen()
     }
 
-    //Process all calculator operations
+    // Process all calculator operations
     processOperation(operation) {
-        //check if current is empty
+        // Check if current is empty
         if(this.currentOperationText.innerText === "" && operation !== "C") {
             //Change operation
             if(this.previusOperationText.innerText !== "") {
@@ -31,7 +31,7 @@ class Calculator {
             return;
         }
 
-        //get current and previous value
+        // Get current and previous value
         let operationValue
         const previous = +this.previusOperationText.innerText.split(" ")[0];
         const current = +this.currentOperationText.innerText;
@@ -74,30 +74,27 @@ class Calculator {
         }
     }
 
-    //chance values the screen
+    // Chance values the screen
     updateScreen(
         operationValue = null, 
         operation = null, 
         current = null, 
-        previous = null
-        ) {
-        
-            console.log(operationValue, operation, current, previous)
-        
-            if(operationValue === null) {
-                this.currentOperationText.innerText += this.currentOperation;
-            } else {
-                //check if value is zero, if it is just add currrent value
-                if(previous === 0) {
-                    operationValue = current
-                }
-                
-                //add current value to previus
-                this.previusOperationText.innerText = `${operationValue} ${operation}`
-                this.currentOperationText.innerText = "";
-
-            }
+        previous = null) {
+        if (operationValue === null) {
+            this.currentOperationText.innerText += this.currentOperation;
+            return; // Terminate execution of the function here
         }
+    
+        // Checks if the value is zero and, if it is, updates operationValue to current
+        if (previous === 0) {
+            operationValue = current;
+        }
+    
+        // Updates the texts on the screen
+        this.previusOperationText.innerText = `${operationValue} ${operation}`;
+        this.currentOperationText.innerText = "";
+    }
+    
 
    //change math operation  
     changeOperation(operation) {
@@ -112,23 +109,23 @@ class Calculator {
 
     }
 
-    ///delete the last digit
+    /// Delete the last digit
     processDelOperator() {
         this.currentOperationText.innerText = this.currentOperationText.innerText.slice(0, -1)
     }
 
-    //clar current operation
+    // Clar current operation
     processClearCurrentOperaion() {
         this.currentOperationText.innerText = "";
     }
 
-    //clear all operations
+    // Clear all operations
     processClearOperation() {
         this.currentOperationText.innerText = "";
         this.previusOperationText.innerText = "";
     }
 
-    //process an operation
+    // Process an operation
     processEqualOperator() {
         const operation = previusOperationText.innerHTML.split(" ")[1];
         this.processOperation(operation);
@@ -138,15 +135,16 @@ class Calculator {
 
 const calc = new Calculator(previusOperationText, currentOperationText)
 
+function handleButtonClick(e) {
+    const value = e.target.innerText;
+
+    if (+value >= 0 || value === ".") {
+        return calc.addDigit(value);
+    }
+
+    calc.processOperation(value);
+}
+
 buttons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        const value = e.target.innerText;
-
-        if(+value >= 0 || value === ".") {
-            calc.addDigit(value)
-        } else {
-            calc.processOperation(value)
-        }
-    });
+    btn.addEventListener("click", handleButtonClick);
 });
-
